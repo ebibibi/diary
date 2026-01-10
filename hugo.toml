@@ -1,12 +1,7 @@
 baseURL = 'https://diary.ebisuda.net/'
 languageCode = 'ja'
 title = 'えび日記'
-theme = 'custom'
-
-[params]
-  description = '胡田昌彦の日記'
-  author = '胡田昌彦'
-  logo = 'https://0.gravatar.com/avatar/6d1b435a74677ddddc346307eed74660e1ba04f2ddaea5cb821e2ae39f413df0?s=88'
+theme = 'PaperMod'
 
 [pagination]
   pagerSize = 20
@@ -18,3 +13,61 @@ theme = 'custom'
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[params]
+  description = '胡田昌彦の日記'
+  author = '胡田昌彦'
+  defaultTheme = 'auto'
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowShareButtons = false
+  ShowToc = false
+
+  [params.profileMode]
+    enabled = false
+
+  [params.homeInfoParams]
+    Title = 'えび日記'
+    Content = '胡田昌彦の日記です。2002年から続けています。'
+
+  [[params.socialIcons]]
+    name = 'twitter'
+    url = 'https://x.com/ebaboruschool'
+
+  [[params.socialIcons]]
+    name = 'linkedin'
+    url = 'https://www.linkedin.com/in/masahiko-ebisuda/'
+
+  [[params.socialIcons]]
+    name = 'rss'
+    url = '/index.xml'
+
+  [params.assets]
+    favicon = 'https://0.gravatar.com/avatar/6d1b435a74677ddddc346307eed74660e1ba04f2ddaea5cb821e2ae39f413df0?s=32'
+
+[menu]
+  [[menu.main]]
+    identifier = 'home'
+    name = 'Home'
+    url = '/'
+    weight = 10
+
+  [[menu.main]]
+    identifier = 'archives'
+    name = 'Archives'
+    url = '/archives/'
+    weight = 20
+
+  [[menu.main]]
+    identifier = 'search'
+    name = 'Search'
+    url = '/search/'
+    weight = 30
+
+  [[menu.main]]
+    identifier = 'tags'
+    name = 'Tags'
+    url = '/tags/'
+    weight = 40
