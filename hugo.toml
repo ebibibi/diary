@@ -1,0 +1,20 @@
+baseURL = 'https://diary.ebisuda.net/'
+languageCode = 'ja'
+title = 'えび日記'
+theme = 'custom'
+
+[params]
+  description = '胡田昌彦の日記'
+  author = '胡田昌彦'
+  logo = 'https://0.gravatar.com/avatar/6d1b435a74677ddddc346307eed74660e1ba04f2ddaea5cb821e2ae39f413df0?s=88'
+
+[pagination]
+  pagerSize = 20
+
+[outputs]
+  home = ['HTML', 'RSS']
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
