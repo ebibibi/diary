@@ -1,0 +1,93 @@
+:root {
+  --primary: #3a7bd5;
+  --secondary: #5a9bef;
+}
+
+.dark {
+  --primary: #5a9bef;
+  --secondary: #7ab5ff;
+}
+
+/* Header */
+.nav {
+  background: linear-gradient(135deg, #3a7bd5 0%, #5a9bef 100%);
+}
+
+.dark .nav {
+  background: linear-gradient(135deg, #2a5ba5 0%, #3a7bd5 100%);
+}
+
+#menu a,
+.logo a,
+#theme-toggle {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+#menu a:hover,
+.logo a:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Logo with avatar */
+.logo a::before {
+  content: "";
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: url('https://0.gravatar.com/avatar/6d1b435a74677ddddc346307eed74660e1ba04f2ddaea5cb821e2ae39f413df0?s=72') center/cover;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+/* Links */
+.post-content a,
+.toc a,
+.pagination a {
+  color: var(--primary);
+}
+
+.post-content a:hover {
+  color: var(--secondary);
+}
+
+/* Post entry hover */
+.post-entry:hover {
+  border-color: var(--primary);
+}
+
+/* Archive year */
+.archive-year {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+/* Buttons */
+.pagination a,
+.btn {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.pagination a:hover,
+.btn:hover {
+  background: var(--secondary);
+  border-color: var(--secondary);
+}
+
+/* Breadcrumbs */
+.breadcrumbs a {
+  color: var(--primary);
+}
+
+/* Post title link */
+.post-title a:hover {
+  color: var(--primary);
+}
+
+/* Social icons in footer */
+.social-icons a:hover svg {
+  fill: var(--primary);
+}
