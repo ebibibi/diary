@@ -64,6 +64,11 @@ body {
   opacity: 0.9;
 }
 
+.site-nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
 .site-nav a {
   color: rgba(255,255,255,0.9);
   text-decoration: none;
@@ -269,6 +274,117 @@ body {
 
 .site-footer a:hover {
   text-decoration: underline;
+}
+
+/* Archives */
+.archives {
+  margin-top: 1rem;
+}
+
+.archive-year {
+  margin-bottom: 1rem;
+}
+
+.year-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-color);
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.year-heading:hover {
+  background: var(--border-color);
+}
+
+.year-toggle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.year-count, .month-count {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+.month-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+}
+
+.archive-list {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.archive-list li {
+  padding: 0.4rem 1rem;
+  border-left: 2px solid var(--border-color);
+  margin-bottom: 0.25rem;
+}
+
+.archive-list li:hover {
+  border-left-color: var(--brand-color);
+  background: var(--bg-secondary);
+}
+
+.archive-list a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.archive-list a:hover {
+  color: var(--brand-color);
+}
+
+/* Search */
+.search-container {
+  margin-bottom: 2rem;
+}
+
+.search-box {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: var(--brand-color);
+}
+
+.search-results {
+  margin-top: 1.5rem;
+}
+
+.search-result-count {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.no-results {
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 2rem;
+  text-align: center;
 }
 
 /* Responsive */

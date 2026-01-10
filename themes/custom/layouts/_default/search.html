@@ -1,0 +1,87 @@
+{{ define "main" }}
+<h1 class="page-heading">検索</h1>
+
+<div class="search-container">
+  <div class="search-box">
+    <input type="text" id="search-input" class="search-input" placeholder="キーワードを入力..." autofocus>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+<script>
+let searchIndex = [];
+
+// Load search index
+fetch('/index.json')
+  .then(response => response.json())
+  .then(data => {
+    searchIndex = data;
+  });
+
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+
+let debounceTimer;
+searchInput.addEventListener('input', () => {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(performSearch, 300);
+});
+
+function performSearch() {
+  const query = searchInput.value.trim().toLowerCase();
+
+  if (query.length < 2) {
+    searchResults.innerHTML = '';
+    return;
+  }
+
+  const results = searchIndex.filter(page => {
+    return page.title.toLowerCase().includes(query) ||
+           page.content.toLowerCase().includes(query);
+  });
+
+  displayResults(results, query);
+}
+
+function displayResults(results, query) {
+  if (results.length === 0) {
+    searchResults.innerHTML = '<p class="no-results">該当する記事が見つかりませんでした</p>';
+    return;
+  }
+
+  let html = `<p class="search-result-count">${results.length}件の記事が見つかりました</p>`;
+  html += '<ul class="post-list">';
+
+  results.slice(0, 50).forEach(page => {
+    html += `
+      <li>
+        <span class="post-meta">${page.date}</span>
+        <a class="post-link" href="${page.url}">${escapeHtml(page.title)}</a>
+      </li>
+    `;
+  });
+
+  html += '</ul>';
+
+  if (results.length > 50) {
+    html += `<p class="search-result-count">...他${results.length - 50}件</p>`;
+  }
+
+  searchResults.innerHTML = html;
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Handle URL parameter
+const urlParams = new URLSearchParams(window.location.search);
+const q = urlParams.get('q');
+if (q) {
+  searchInput.value = q;
+  setTimeout(performSearch, 500);
+}
+</script>
+{{ end }}

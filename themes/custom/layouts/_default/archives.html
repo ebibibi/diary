@@ -1,0 +1,60 @@
+{{ define "main" }}
+<h1 class="page-heading">アーカイブ</h1>
+
+<div class="archives">
+  {{ $pages := where .Site.RegularPages "Section" "posts" }}
+  {{ $years := dict }}
+
+  {{ range $pages }}
+    {{ $year := .Date.Format "2006" }}
+    {{ $month := .Date.Format "01" }}
+    {{ $yearData := index $years $year | default dict }}
+    {{ $monthData := index $yearData $month | default slice }}
+    {{ $monthData = $monthData | append . }}
+    {{ $yearData = merge $yearData (dict $month $monthData) }}
+    {{ $years = merge $years (dict $year $yearData) }}
+  {{ end }}
+
+  {{ range $year, $months := $years }}
+  <div class="archive-year">
+    <h2 class="year-heading" data-year="{{ $year }}">
+      <span class="year-toggle">▶</span>
+      {{ $year }}年
+      <span class="year-count">{{ $count := 0 }}{{ range $m, $posts := $months }}{{ $count = add $count (len $posts) }}{{ end }}({{ $count }}件)</span>
+    </h2>
+    <div class="year-content" style="display: none;">
+      {{ range $month, $posts := $months }}
+      <div class="archive-month">
+        <h3 class="month-heading">{{ $month }}月 <span class="month-count">({{ len $posts }}件)</span></h3>
+        <ul class="archive-list">
+          {{ range $posts }}
+          <li>
+            <span class="post-meta">{{ .Date.Format "01-02" }}</span>
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+</div>
+
+<script>
+document.querySelectorAll('.year-heading').forEach(heading => {
+  heading.style.cursor = 'pointer';
+  heading.addEventListener('click', () => {
+    const content = heading.nextElementSibling;
+    const toggle = heading.querySelector('.year-toggle');
+    if (content.style.display === 'none') {
+      content.style.display = 'block';
+      toggle.textContent = '▼';
+    } else {
+      content.style.display = 'none';
+      toggle.textContent = '▶';
+    }
+  });
+});
+</script>
+{{ end }}

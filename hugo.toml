@@ -12,7 +12,7 @@ theme = 'custom'
   pagerSize = 20
 
 [outputs]
-  home = ['HTML', 'RSS']
+  home = ['HTML', 'RSS', 'JSON']
 
 [markup]
   [markup.goldmark]
