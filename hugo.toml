@@ -7,7 +7,7 @@ theme = 'PaperMod'
   pagerSize = 20
 
 [outputs]
-  home = ['HTML', 'RSS', 'JSON']
+  home = ['HTML', 'RSS']
 
 [markup]
   [markup.goldmark]
