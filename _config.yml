@@ -3,3 +3,25 @@ description: "胡田昌彦の日記"
 theme: minima
 lang: ja
 permalink: /posts/:year-:month-:day-:title/
+
+# Author
+author:
+  name: 胡田昌彦
+  email: ebibibi@gmail.com
+
+# Social links
+twitter_username: ebi
+github_username: ebibibi
+
+# Pagination
+paginate: 20
+paginate_path: "/page/:num/"
+
+# Minima settings
+minima:
+  skin: classic
+
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-seo-tag
