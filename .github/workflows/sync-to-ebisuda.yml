@@ -1,0 +1,44 @@
+name: Sync diary to ebisuda.net
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "content/posts/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout diary
+        uses: actions/checkout@v4
+
+      - name: Checkout ebisuda.net
+        uses: actions/checkout@v4
+        with:
+          repository: ebibibi/ebisuda.net
+          token: ${{ secrets.PAT_TOKEN }}
+          path: ebisuda-net
+
+      - name: Sync diary posts
+        run: |
+          # diary の content/posts/ → ebisuda.net の content/diary/ にコピー
+          rsync -av --delete content/posts/ ebisuda-net/content/diary/
+
+      - name: Commit and push to ebisuda.net
+        run: |
+          cd ebisuda-net
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add content/diary/
+          if ! git diff --cached --quiet 2>/dev/null; then
+            git commit -m "feat(diary): 日記記事同期"
+            git push
+            echo "✓ ebisuda.net に日記を同期しました"
+          else
+            echo "日記に変更はありませんでした"
+          fi
