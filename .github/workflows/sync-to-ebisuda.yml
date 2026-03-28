@@ -27,7 +27,8 @@ jobs:
       - name: Sync diary posts
         run: |
           # diary の content/posts/ → ebisuda.net の content/diary/ にコピー
-          rsync -av --delete content/posts/ ebisuda-net/content/diary/
+          # --delete は使わない（ebisuda.net側にだけ存在するファイルを消さないため）
+          rsync -av --exclude='_index.md' content/posts/ ebisuda-net/content/diary/
 
       - name: Commit and push to ebisuda.net
         run: |
